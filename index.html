@@ -199,17 +199,26 @@
       font-size: 0.9rem;
       padding: 40px 0;
     }
+    .tracker-badges {
+      display: inline-flex;
+      gap: 6px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
     .tracker-badge {
       display: inline-block;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       padding: 2px 8px;
       border-radius: 10px;
       font-weight: 600;
-      margin-left: 8px;
     }
-    .badge-tracking { background: #e3f2fd; color: #1565c0; }
-    .badge-done { background: #e8f5e9; color: #2e7d32; }
-    .badge-caution { background: #fff3e0; color: #e65100; }
+    /* 출석 배지 */
+    .badge-att-0, .badge-att-1 { background: #e3f2fd; color: #1565c0; }
+    .badge-att-2, .badge-att-3 { background: #fff3e0; color: #e65100; }
+    .badge-att-4 { background: #e8f5e9; color: #2e7d32; }
+    /* 심방 배지 */
+    .badge-care-1 { background: #f3e5f5; color: #7b1fa2; }
+    .badge-care-2 { background: #e8f5e9; color: #2e7d32; }
     .meeting {
       max-width: 720px;
       margin: 0 auto 48px;
@@ -616,7 +625,7 @@
 
     <!-- 4/12 편입 -->
     <div class="tracker-card">
-      <h4>이선민 (27기) — 재은진 회진셀 <span class="tracker-badge badge-tracking">트래킹 중</span></h4>
+      <h4>이선민 (27기) — 재은진 회진셀 <span class="tracker-badges"><span class="tracker-badge badge-att-0">0/4 출석</span></span></h4>
       <div class="tracker-meta">
         <span>편입일: 2026-04-12</span>
         <span>담당 간사: 재은</span>
@@ -637,7 +646,7 @@
     </div>
 
     <div class="tracker-card">
-      <h4>정용민 (24기) — 승목진 윤환셀 <span class="tracker-badge badge-tracking">트래킹 중</span></h4>
+      <h4>정용민 (24기) — 승목진 윤환셀 <span class="tracker-badges"><span class="tracker-badge badge-att-0">0/4 출석</span></span></h4>
       <div class="tracker-meta">
         <span>편입일: 2026-04-12</span>
         <span>담당 간사: 승목</span>
@@ -659,7 +668,7 @@
 
     <!-- 5/10 편입 (확정) -->
     <div class="tracker-card">
-      <h4>임근영 (27기) — 다움진 황인욱셀 <span class="tracker-badge badge-tracking">트래킹 중</span></h4>
+      <h4>임근영 (27기) — 다움진 황인욱셀 <span class="tracker-badges"><span class="tracker-badge badge-att-0">0/4 출석</span></span></h4>
       <div class="tracker-meta">
         <span>편입일: 2026-05-10</span>
         <span>담당 간사: 다움</span>
@@ -680,7 +689,7 @@
     </div>
 
     <div class="tracker-card">
-      <h4>석기배 (26기) — 지은진 서유진셀 <span class="tracker-badge badge-tracking">트래킹 중</span></h4>
+      <h4>석기배 (26기) — 지은진 서유진셀 <span class="tracker-badges"><span class="tracker-badge badge-att-0">0/4 출석</span></span></h4>
       <div class="tracker-meta">
         <span>편입일: 2026-05-10</span>
         <span>담당 간사: 지은</span>
@@ -702,7 +711,7 @@
 
     <!-- 5/17 편입 (확정) -->
     <div class="tracker-card">
-      <h4>김진혁 (27기) — 지은진 서유진셀 <span class="tracker-badge badge-tracking">트래킹 중</span></h4>
+      <h4>김진혁 (27기) — 지은진 서유진셀 <span class="tracker-badges"><span class="tracker-badge badge-att-0">0/4 출석</span></span></h4>
       <div class="tracker-meta">
         <span>편입일: 2026-05-17</span>
         <span>담당 간사: 지은</span>
@@ -733,7 +742,7 @@
 
     <!-- 4/12 편입 -->
     <div class="tracker-card">
-      <h4>정주은 (26기) — 상우진 은진셀 <span class="tracker-badge badge-tracking">트래킹 중</span></h4>
+      <h4>정주은 (26기) — 상우진 은진셀 <span class="tracker-badges"><span class="tracker-badge badge-att-0">0/4 출석</span></span></h4>
       <div class="tracker-meta">
         <span>편입일: 2026-04-12</span>
         <span>담당 간사: 상우</span>
@@ -755,7 +764,7 @@
 
     <!-- 4/19 편입 -->
     <div class="tracker-card">
-      <h4>전찬휘 (27기) — 현준진 효진셀 <span class="tracker-badge badge-done">완료</span></h4>
+      <h4>전찬휘 (27기) — 현준진 효진셀 <span class="tracker-badges"><span class="tracker-badge badge-att-3">3/4 출석</span><span class="tracker-badge badge-care-2">셀장+사역자 심방완료</span></span></h4>
       <div class="tracker-meta">
         <span>편입일: 2026-04-19</span>
         <span>담당 간사: 현준</span>
