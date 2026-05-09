@@ -44,7 +44,7 @@
       gap: 8px;
       flex-wrap: wrap;
     }
-    nav a {
+    nav a, nav button {
       font-size: 0.85rem;
       color: var(--accent);
       text-decoration: none;
@@ -52,10 +52,164 @@
       border: 1px solid var(--border);
       border-radius: 16px;
       transition: background 0.15s;
+      background: none;
+      cursor: pointer;
+      font-family: inherit;
     }
-    nav a:hover, nav a.active {
+    nav a:hover, nav a.active,
+    nav button:hover, nav button.active {
       background: var(--accent-light);
     }
+    .tab-nav {
+      max-width: 720px;
+      margin: 0 auto 16px;
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--border);
+    }
+    .tab-nav button {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 8px 20px;
+      margin-bottom: -2px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .tab-nav button.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    /* 트래커 스타일 */
+    .tracker-nav {
+      max-width: 720px;
+      margin: 0 auto 24px;
+      display: flex;
+      gap: 10px;
+    }
+    .tracker-nav button {
+      flex: 1;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 12px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .tracker-nav button:hover {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+    .tracker-nav button.active {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+    .tracker-nav .cheong-count {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .tracker-back {
+      max-width: 720px;
+      margin: 0 auto 12px;
+    }
+    .tracker-back button {
+      font-size: 0.85rem;
+      color: var(--accent);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 4px 0;
+    }
+    .tracker-back button:hover { text-decoration: underline; }
+    .tracker-panel { display: none; }
+    .tracker-panel.active { display: block; }
+    .tracker-section {
+      max-width: 720px;
+      margin: 0 auto 48px;
+    }
+    .tracker-section h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+    }
+    .tracker-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+    }
+    .tracker-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .tracker-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .tracker-meta span { margin-right: 16px; }
+    .attendance-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+    .attendance-table th {
+      background: var(--tag-bg);
+      padding: 5px 8px;
+      text-align: left;
+      border: 1px solid var(--border);
+      font-weight: 600;
+    }
+    .attendance-table td {
+      padding: 5px 8px;
+      border: 1px solid var(--border);
+    }
+    .attendance-table td:nth-child(2) { text-align: center; width: 50px; }
+    .care-checklist {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding-left: 4px;
+      list-style: none;
+    }
+    .care-checklist li { margin-bottom: 2px; }
+    .care-checklist li.done { text-decoration: line-through; }
+    .tracker-empty {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 40px 0;
+    }
+    .tracker-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    .badge-tracking { background: #e3f2fd; color: #1565c0; }
+    .badge-done { background: #e8f5e9; color: #2e7d32; }
+    .badge-caution { background: #fff3e0; color: #e65100; }
     .meeting {
       max-width: 720px;
       margin: 0 auto 48px;
@@ -196,6 +350,13 @@
   <p>매월 간사 정기 회의 기록</p>
 </header>
 
+<div class="tab-nav">
+  <button class="active" onclick="switchTab('minutes')">회의록</button>
+  <button onclick="switchTab('tracker')">편입 트래커</button>
+</div>
+
+<!-- 회의록 탭 -->
+<div id="tab-minutes" class="tab-content active">
 <nav>
   <a href="#meeting-20260426" class="active">2026.04.26</a>
 </nav>
@@ -434,9 +595,249 @@
 
 </section>
 
+</div><!-- /tab-minutes -->
+
+<!-- 편입 트래커 탭 -->
+<div id="tab-tracker" class="tab-content">
+
+  <!-- 1청/2청 선택 화면 -->
+  <div id="tracker-home" class="tracker-panel active">
+    <div class="tracker-nav">
+      <button onclick="showCheong('1')">다니엘 1청<span class="cheong-count">5명 트래킹 중</span></button>
+      <button onclick="showCheong('2')">다니엘 2청<span class="cheong-count">3명 트래킹 중</span></button>
+    </div>
+  </div>
+
+  <!-- 1청 카드 목록 -->
+  <div id="tracker-1" class="tracker-panel">
+    <div class="tracker-back"><button onclick="showCheong('home')">← 돌아가기</button></div>
+    <section class="tracker-section">
+      <h2>다니엘 1청 — 새가족 편입 트래커</h2>
+
+    <!-- 4/12 편입 -->
+    <div class="tracker-card">
+      <h4>이선민 (27기) — 재은진 회진셀 <span class="tracker-badge badge-tracking">트래킹 중</span></h4>
+      <div class="tracker-meta">
+        <span>편입일: 2026-04-12</span>
+        <span>담당 간사: 재은</span>
+      </div>
+      <table class="attendance-table">
+        <thead><tr><th>회차</th><th>출석</th><th>날짜</th><th>특이사항</th></tr></thead>
+        <tbody>
+          <tr><td>1회차</td><td></td><td></td><td></td></tr>
+          <tr><td>2회차</td><td></td><td></td><td></td></tr>
+          <tr><td>3회차</td><td></td><td></td><td></td></tr>
+          <tr><td>4회차</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <ul class="care-checklist">
+        <li>☐ ① 셀장 심방 (2주 이내)</li>
+        <li>☐ ② 간사 심방 여부 확인</li>
+        <li>☐ ③ 사역자 심방 연결</li>
+      </ul>
+    </div>
+
+    <div class="tracker-card">
+      <h4>정용민 (24기) — 승목진 윤환셀 <span class="tracker-badge badge-tracking">트래킹 중</span></h4>
+      <div class="tracker-meta">
+        <span>편입일: 2026-04-12</span>
+        <span>담당 간사: 승목</span>
+      </div>
+      <table class="attendance-table">
+        <thead><tr><th>회차</th><th>출석</th><th>날짜</th><th>특이사항</th></tr></thead>
+        <tbody>
+          <tr><td>1회차</td><td></td><td></td><td></td></tr>
+          <tr><td>2회차</td><td></td><td></td><td></td></tr>
+          <tr><td>3회차</td><td></td><td></td><td></td></tr>
+          <tr><td>4회차</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <ul class="care-checklist">
+        <li>☐ ① 셀장 심방 (2주 이내)</li>
+        <li>☐ ② 간사 심방 여부 확인</li>
+        <li>☐ ③ 사역자 심방 연결</li>
+      </ul>
+    </div>
+
+    <!-- 5/10 편입 (확정) -->
+    <div class="tracker-card">
+      <h4>임근영 (27기) — 다움진 황인욱셀 <span class="tracker-badge badge-tracking">트래킹 중</span></h4>
+      <div class="tracker-meta">
+        <span>편입일: 2026-05-10</span>
+        <span>담당 간사: 다움</span>
+      </div>
+      <table class="attendance-table">
+        <thead><tr><th>회차</th><th>출석</th><th>날짜</th><th>특이사항</th></tr></thead>
+        <tbody>
+          <tr><td>1회차</td><td></td><td></td><td></td></tr>
+          <tr><td>2회차</td><td></td><td></td><td></td></tr>
+          <tr><td>3회차</td><td></td><td></td><td></td></tr>
+          <tr><td>4회차</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <ul class="care-checklist">
+        <li>☐ ① 셀장 심방 (2주 이내)</li>
+        <li>☐ ② 간사 심방 여부 확인</li>
+        <li>☐ ③ 사역자 심방 연결</li>
+      </ul>
+    </div>
+
+    <div class="tracker-card">
+      <h4>석기배 (26기) — 지은진 서유진셀 <span class="tracker-badge badge-tracking">트래킹 중</span></h4>
+      <div class="tracker-meta">
+        <span>편입일: 2026-05-10</span>
+        <span>담당 간사: 지은</span>
+      </div>
+      <table class="attendance-table">
+        <thead><tr><th>회차</th><th>출석</th><th>날짜</th><th>특이사항</th></tr></thead>
+        <tbody>
+          <tr><td>1회차</td><td></td><td></td><td></td></tr>
+          <tr><td>2회차</td><td></td><td></td><td></td></tr>
+          <tr><td>3회차</td><td></td><td></td><td></td></tr>
+          <tr><td>4회차</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <ul class="care-checklist">
+        <li>☐ ① 셀장 심방 (2주 이내)</li>
+        <li>☐ ② 간사 심방 여부 확인</li>
+        <li>☐ ③ 사역자 심방 연결</li>
+      </ul>
+    </div>
+
+    <!-- 5/17 편입 (확정) -->
+    <div class="tracker-card">
+      <h4>김진혁 (27기) — 지은진 서유진셀 <span class="tracker-badge badge-tracking">트래킹 중</span></h4>
+      <div class="tracker-meta">
+        <span>편입일: 2026-05-17</span>
+        <span>담당 간사: 지은</span>
+      </div>
+      <table class="attendance-table">
+        <thead><tr><th>회차</th><th>출석</th><th>날짜</th><th>특이사항</th></tr></thead>
+        <tbody>
+          <tr><td>1회차</td><td></td><td></td><td></td></tr>
+          <tr><td>2회차</td><td></td><td></td><td></td></tr>
+          <tr><td>3회차</td><td></td><td></td><td></td></tr>
+          <tr><td>4회차</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <ul class="care-checklist">
+        <li>☐ ① 셀장 심방 (2주 이내)</li>
+        <li>☐ ② 간사 심방 여부 확인</li>
+        <li>☐ ③ 사역자 심방 연결</li>
+      </ul>
+    </div>
+
+    </section>
+  </div>
+
+  <!-- 2청 카드 목록 -->
+  <div id="tracker-2" class="tracker-panel">
+    <div class="tracker-back"><button onclick="showCheong('home')">← 돌아가기</button></div>
+    <section class="tracker-section">
+      <h2>다니엘 2청 — 새가족 편입 트래커</h2>
+
+    <!-- 4/12 편입 -->
+    <div class="tracker-card">
+      <h4>정주은 (26기) — 상우진 은진셀 <span class="tracker-badge badge-tracking">트래킹 중</span></h4>
+      <div class="tracker-meta">
+        <span>편입일: 2026-04-12</span>
+        <span>담당 간사: 상우</span>
+      </div>
+      <table class="attendance-table">
+        <thead><tr><th>회차</th><th>출석</th><th>날짜</th><th>특이사항</th></tr></thead>
+        <tbody>
+          <tr><td>1회차</td><td></td><td></td><td></td></tr>
+          <tr><td>2회차</td><td></td><td></td><td></td></tr>
+          <tr><td>3회차</td><td></td><td></td><td></td></tr>
+          <tr><td>4회차</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <ul class="care-checklist">
+        <li>☐ ① 셀장 심방 (2주 이내)</li>
+        <li>☐ ② 간사 심방 여부 확인</li>
+        <li>☐ ③ 사역자 심방 연결</li>
+      </ul>
+    </div>
+
+    <!-- 4/19 편입 -->
+    <div class="tracker-card">
+      <h4>전찬휘 (27기) — 현준진 효진셀 <span class="tracker-badge badge-tracking">트래킹 중</span></h4>
+      <div class="tracker-meta">
+        <span>편입일: 2026-04-19</span>
+        <span>담당 간사: 현준</span>
+      </div>
+      <table class="attendance-table">
+        <thead><tr><th>회차</th><th>출석</th><th>날짜</th><th>특이사항</th></tr></thead>
+        <tbody>
+          <tr><td>1회차</td><td></td><td></td><td></td></tr>
+          <tr><td>2회차</td><td></td><td></td><td></td></tr>
+          <tr><td>3회차</td><td></td><td></td><td></td></tr>
+          <tr><td>4회차</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <ul class="care-checklist">
+        <li>☐ ① 셀장 심방 (2주 이내)</li>
+        <li>☐ ② 간사 심방 여부 확인</li>
+        <li>☐ ③ 사역자 심방 연결</li>
+      </ul>
+    </div>
+
+    <div class="tracker-card">
+      <h4>곽경호 (27기) — 현준진 효진셀 <span class="tracker-badge badge-tracking">트래킹 중</span></h4>
+      <div class="tracker-meta">
+        <span>편입일: 2026-04-19</span>
+        <span>담당 간사: 현준</span>
+      </div>
+      <table class="attendance-table">
+        <thead><tr><th>회차</th><th>출석</th><th>날짜</th><th>특이사항</th></tr></thead>
+        <tbody>
+          <tr><td>1회차</td><td></td><td></td><td></td></tr>
+          <tr><td>2회차</td><td></td><td></td><td></td></tr>
+          <tr><td>3회차</td><td></td><td></td><td></td></tr>
+          <tr><td>4회차</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <ul class="care-checklist">
+        <li>☐ ① 셀장 심방 (2주 이내)</li>
+        <li>☐ ② 간사 심방 여부 확인</li>
+        <li>☐ ③ 사역자 심방 연결</li>
+      </ul>
+    </div>
+
+    </section>
+  </div>
+
+</div><!-- /tab-tracker -->
+
 <footer>
   다니엘청 간사 회의록
 </footer>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-nav button').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  const buttons = document.querySelectorAll('.tab-nav button');
+  if (tab === 'minutes') buttons[0].classList.add('active');
+  else buttons[1].classList.add('active');
+  // 트래커 탭 전환 시 홈으로 리셋
+  if (tab === 'tracker') showCheong('home');
+}
+function showCheong(id) {
+  document.querySelectorAll('.tracker-panel').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tracker-nav button').forEach(el => el.classList.remove('active'));
+  if (id === 'home') {
+    document.getElementById('tracker-home').classList.add('active');
+  } else {
+    document.getElementById('tracker-' + id).classList.add('active');
+    // 해당 버튼 active 표시
+    const idx = id === '1' ? 0 : 1;
+    document.querySelectorAll('.tracker-nav button')[idx].classList.add('active');
+  }
+  window.scrollTo(0, 0);
+}
+</script>
 
 </body>
 </html>
