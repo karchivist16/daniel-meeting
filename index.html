@@ -199,6 +199,23 @@
       font-size: 0.9rem;
       padding: 40px 0;
     }
+    .tracker-completed {
+      margin-top: 32px;
+      border-top: 1px dashed var(--border);
+      padding-top: 16px;
+    }
+    .tracker-completed summary {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 8px 0;
+    }
+    .tracker-completed summary:hover { color: var(--accent); }
+    .tracker-completed .tracker-card {
+      opacity: 0.75;
+      border-style: dashed;
+    }
     .tracker-badges {
       display: inline-flex;
       gap: 6px;
@@ -613,7 +630,7 @@
   <div id="tracker-home" class="tracker-panel active">
     <div class="tracker-nav">
       <button onclick="showCheong('1')">다니엘 1청<span class="cheong-count">5명 트래킹 중</span></button>
-      <button onclick="showCheong('2')">다니엘 2청<span class="cheong-count">2명 트래킹 중</span></button>
+      <button onclick="showCheong('2')">다니엘 2청<span class="cheong-count">1명 트래킹 중 · 1명 완료</span></button>
     </div>
   </div>
 
@@ -731,6 +748,11 @@
       </ul>
     </div>
 
+    <!-- 완료 -->
+    <details class="tracker-completed">
+      <summary>✅ 완료 (0명)</summary>
+    </details>
+
     </section>
   </div>
 
@@ -742,7 +764,7 @@
 
     <!-- 4/12 편입 -->
     <div class="tracker-card">
-      <h4>정주은 (26기) — 상우진 은진셀 <span class="tracker-badges"><span class="tracker-badge badge-att-0">0/4 출석</span></span></h4>
+      <h4>정주은 (26기) — 상우진 은진셀 <span class="tracker-badges"><span class="tracker-badge badge-att-4">4/4 출석</span><span class="tracker-badge badge-care-1">셀장 심방완료</span></span></h4>
       <div class="tracker-meta">
         <span>편입일: 2026-04-12</span>
         <span>담당 간사: 상우</span>
@@ -750,40 +772,44 @@
       <table class="attendance-table">
         <thead><tr><th>회차</th><th>출석</th><th>날짜</th><th>특이사항</th></tr></thead>
         <tbody>
-          <tr><td>1회차</td><td></td><td></td><td></td></tr>
-          <tr><td>2회차</td><td></td><td></td><td></td></tr>
-          <tr><td>3회차</td><td></td><td></td><td></td></tr>
-          <tr><td>4회차</td><td></td><td></td><td></td></tr>
-        </tbody>
-      </table>
-      <ul class="care-checklist">
-        <li>☐ ① 셀장 심방 (2주 이내)</li>
-        <li>☐ ② 사역자 심방 연결</li>
-      </ul>
-    </div>
-
-    <!-- 4/19 편입 -->
-    <div class="tracker-card">
-      <h4>전찬휘 (27기) — 현준진 효진셀 <span class="tracker-badges"><span class="tracker-badge badge-att-3">3/4 출석</span><span class="tracker-badge badge-care-2">셀장+사역자 심방완료</span></span></h4>
-      <div class="tracker-meta">
-        <span>편입일: 2026-04-19</span>
-        <span>담당 간사: 현준</span>
-      </div>
-      <table class="attendance-table">
-        <thead><tr><th>회차</th><th>출석</th><th>날짜</th><th>특이사항</th></tr></thead>
-        <tbody>
-          <tr><td>1회차</td><td>○</td><td>4/19</td><td></td></tr>
+          <tr><td>1회차</td><td>○</td><td>4/12</td><td></td></tr>
           <tr><td>2회차</td><td>○</td><td>4/26</td><td></td></tr>
           <tr><td>3회차</td><td>○</td><td>5/3</td><td></td></tr>
-          <tr><td>4회차</td><td></td><td></td><td></td></tr>
+          <tr><td>4회차</td><td>○</td><td>5/10</td><td></td></tr>
         </tbody>
       </table>
       <ul class="care-checklist">
         <li class="done">☑ ① 셀장 심방 완료</li>
-        <li class="done">☑ ② 사역자 심방 연결 완료</li>
+        <li>☐ ② 사역자 심방 연결</li>
       </ul>
     </div>
 
+
+    <!-- 완료 -->
+    <details class="tracker-completed">
+      <summary>✅ 완료 (1명)</summary>
+      <div class="tracker-card">
+        <h4>전찬휘 (27기) — 현준진 효진셀 <span class="tracker-badges"><span class="tracker-badge badge-att-4">4/4 출석</span><span class="tracker-badge badge-care-2">셀장+사역자 심방완료</span></span></h4>
+        <div class="tracker-meta">
+          <span>편입일: 2026-04-19</span>
+          <span>담당 간사: 현준</span>
+          <span>완료일: 2026-05-10</span>
+        </div>
+        <table class="attendance-table">
+          <thead><tr><th>회차</th><th>출석</th><th>날짜</th><th>특이사항</th></tr></thead>
+          <tbody>
+            <tr><td>1회차</td><td>○</td><td>4/19</td><td></td></tr>
+            <tr><td>2회차</td><td>○</td><td>4/26</td><td></td></tr>
+            <tr><td>3회차</td><td>○</td><td>5/3</td><td></td></tr>
+            <tr><td>4회차</td><td>○</td><td>5/10</td><td></td></tr>
+          </tbody>
+        </table>
+        <ul class="care-checklist">
+          <li class="done">☑ ① 셀장 심방 완료</li>
+          <li class="done">☑ ② 사역자 심방 연결 완료</li>
+        </ul>
+      </div>
+    </details>
 
     </section>
   </div>
