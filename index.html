@@ -229,6 +229,74 @@
       border-radius: 10px;
       font-weight: 600;
     }
+    /* 셀교육 출석표 */
+    .cell-att-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 32px;
+    }
+    .cell-att-table {
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      min-width: 600px;
+    }
+    .cell-att-table th, .cell-att-table td {
+      padding: 5px 8px;
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .cell-att-table th {
+      background: var(--tag-bg);
+      font-weight: 600;
+      text-align: center;
+    }
+    .cell-att-table th.jin-header {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 700;
+      text-align: left;
+    }
+    .cell-att-table td.cell-name {
+      padding-left: 16px;
+    }
+    .cell-att-table td.att-cell {
+      text-align: center;
+      width: 52px;
+      min-width: 52px;
+    }
+    .manage-section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 32px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+    .manage-fold {
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card);
+    }
+    .manage-fold summary {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      padding: 14px 20px;
+      cursor: pointer;
+      list-style: none;
+    }
+    .manage-fold summary::-webkit-details-marker { display: none; }
+    .manage-fold summary::before {
+      content: '▸ ';
+      font-size: 0.85rem;
+    }
+    .manage-fold[open] summary::before {
+      content: '▾ ';
+    }
+    .manage-fold summary:hover { background: var(--accent-light); border-radius: 8px; }
+    .manage-fold-body {
+      padding: 0 20px 16px;
+    }
     /* 출석 배지 */
     .badge-att-0, .badge-att-1 { background: #e3f2fd; color: #1565c0; }
     .badge-att-2, .badge-att-3 { background: #fff3e0; color: #e65100; }
@@ -379,6 +447,7 @@
 <div class="tab-nav">
   <button class="active" onclick="switchTab('minutes')">회의록</button>
   <button onclick="switchTab('tracker')">편입 트래커</button>
+  <button onclick="switchTab('manage')">관리</button>
 </div>
 
 <!-- 회의록 탭 -->
@@ -629,7 +698,7 @@
   <!-- 1청/2청 선택 화면 -->
   <div id="tracker-home" class="tracker-panel active">
     <div class="tracker-nav">
-      <button onclick="showCheong('1')">다니엘 1청<span class="cheong-count">5명 트래킹 중</span></button>
+      <button onclick="showCheong('1')">다니엘 1청<span class="cheong-count">3명 트래킹 중</span></button>
       <button onclick="showCheong('2')">다니엘 2청<span class="cheong-count">2명 트래킹 중 · 1명 완료</span></button>
     </div>
   </div>
@@ -640,52 +709,9 @@
     <section class="tracker-section">
       <h2>다니엘 1청 — 새가족 편입 트래커</h2>
 
-    <!-- 4/12 편입 -->
-    <div class="tracker-card">
-      <h4>이선민 (27기) — 재은진 회진셀 <span class="tracker-badges"><span class="tracker-badge badge-att-0">0/4 출석</span></span></h4>
-      <div class="tracker-meta">
-        <span>편입일: 2026-04-12</span>
-        <span>담당 간사: 재은</span>
-      </div>
-      <table class="attendance-table">
-        <thead><tr><th>회차</th><th>출석</th><th>날짜</th><th>특이사항</th></tr></thead>
-        <tbody>
-          <tr><td>1회차</td><td></td><td></td><td></td></tr>
-          <tr><td>2회차</td><td></td><td></td><td></td></tr>
-          <tr><td>3회차</td><td></td><td></td><td></td></tr>
-          <tr><td>4회차</td><td></td><td></td><td></td></tr>
-        </tbody>
-      </table>
-      <ul class="care-checklist">
-        <li>☐ ① 셀장 심방 (2주 이내)</li>
-        <li>☐ ② 사역자 심방 연결</li>
-      </ul>
-    </div>
-
-    <div class="tracker-card">
-      <h4>정용민 (24기) — 승목진 윤환셀 <span class="tracker-badges"><span class="tracker-badge badge-att-0">0/4 출석</span></span></h4>
-      <div class="tracker-meta">
-        <span>편입일: 2026-04-12</span>
-        <span>담당 간사: 승목</span>
-      </div>
-      <table class="attendance-table">
-        <thead><tr><th>회차</th><th>출석</th><th>날짜</th><th>특이사항</th></tr></thead>
-        <tbody>
-          <tr><td>1회차</td><td></td><td></td><td></td></tr>
-          <tr><td>2회차</td><td></td><td></td><td></td></tr>
-          <tr><td>3회차</td><td></td><td></td><td></td></tr>
-          <tr><td>4회차</td><td></td><td></td><td></td></tr>
-        </tbody>
-      </table>
-      <ul class="care-checklist">
-        <li>☐ ① 셀장 심방 (2주 이내)</li>
-        <li>☐ ② 사역자 심방 연결</li>
-      </ul>
-    </div>
-
     <!-- 5/10 편입 (확정) -->
     <div class="tracker-card">
-      <h4>임근영 (27기) — 다움진 황인욱셀 <span class="tracker-badges"><span class="tracker-badge badge-att-0">0/4 출석</span></span></h4>
+      <h4>임근영 (27기) — 다움진 황인욱셀 <span class="tracker-badges"><span class="tracker-badge badge-att-2">2/4 출석</span></span></h4>
       <div class="tracker-meta">
         <span>편입일: 2026-05-10</span>
         <span>담당 간사: 다움</span>
@@ -693,14 +719,14 @@
       <table class="attendance-table">
         <thead><tr><th>회차</th><th>출석</th><th>날짜</th><th>특이사항</th></tr></thead>
         <tbody>
-          <tr><td>1회차</td><td></td><td></td><td></td></tr>
-          <tr><td>2회차</td><td></td><td></td><td></td></tr>
+          <tr><td>1회차</td><td>✅</td><td>5/10</td><td></td></tr>
+          <tr><td>2회차</td><td>✅</td><td>5/17</td><td>같은 나이대 동성 친구들이 많아 적응 잘하는 중</td></tr>
           <tr><td>3회차</td><td></td><td></td><td></td></tr>
           <tr><td>4회차</td><td></td><td></td><td></td></tr>
         </tbody>
       </table>
       <ul class="care-checklist">
-        <li>☐ ① 셀장 심방 (2주 이내)</li>
+        <li>☐ ① 셀장 심방 — 셀장·새가족 모두 바빠 2주 이내 어려우나 진행 예정. 완료 시 다움에게 보고 <em>(5/17)</em></li>
         <li>☐ ② 사역자 심방 연결</li>
       </ul>
     </div>
@@ -726,11 +752,11 @@
       </ul>
     </div>
 
-    <!-- 5/17 편입 (확정) -->
+    <!-- 5/24 편입 (확정) -->
     <div class="tracker-card">
       <h4>김진혁 (27기) — 지은진 서유진셀 <span class="tracker-badges"><span class="tracker-badge badge-att-0">0/4 출석</span></span></h4>
       <div class="tracker-meta">
-        <span>편입일: 2026-05-17</span>
+        <span>편입일: 2026-05-24</span>
         <span>담당 간사: 지은</span>
       </div>
       <table class="attendance-table">
@@ -787,7 +813,7 @@
 
     <!-- 5/17 셀변경 -->
     <div class="tracker-card">
-      <h4>유승현 (27기) — 현준진 효진셀 <span class="tracker-badges"><span class="tracker-badge badge-att-0">0/4 출석</span></span></h4>
+      <h4>유승현 (27기) — 현준진 효진셀 <span class="tracker-badges"><span class="tracker-badge badge-att-1">1/4 출석</span></span></h4>
       <div class="tracker-meta">
         <span>셀변경일: 2026-05-17</span>
         <span>담당 간사: 현준</span>
@@ -795,14 +821,14 @@
       <table class="attendance-table">
         <thead><tr><th>회차</th><th>출석</th><th>날짜</th><th>특이사항</th></tr></thead>
         <tbody>
-          <tr><td>1회차</td><td></td><td></td><td></td></tr>
+          <tr><td>1회차</td><td>✅</td><td>5/17</td><td>셀변경 등 청에서의 관심이 부담스러운 듯. 천천히 상황 보기로</td></tr>
           <tr><td>2회차</td><td></td><td></td><td></td></tr>
           <tr><td>3회차</td><td></td><td></td><td></td></tr>
           <tr><td>4회차</td><td></td><td></td><td></td></tr>
         </tbody>
       </table>
       <ul class="care-checklist">
-        <li>☐ ① 셀장 심방 (2주 이내)</li>
+        <li>☐ ① 셀장 심방 — 본인 부담 느끼는 중, 서두르지 않고 상황 보며 진행 <em>(5/20)</em></li>
         <li>☐ ② 사역자 심방 연결</li>
       </ul>
     </div>
@@ -838,6 +864,106 @@
 
 </div><!-- /tab-tracker -->
 
+<!-- 관리 탭 -->
+<div id="tab-manage" class="tab-content">
+  <section class="tracker-section">
+
+    <!-- 건의사항 -->
+    <details class="manage-fold">
+      <summary>건의사항</summary>
+      <div class="manage-fold-body">
+        <p style="font-size:0.85rem; color:var(--muted); margin-bottom:16px;">진모임·셀장·셀원 등에서 올라온 건의. 반영 완료 시 삭제.</p>
+        <table class="attendance-table" style="width:100%;">
+          <thead>
+            <tr><th style="width:90px;">날짜</th><th style="width:100px;">출처</th><th>내용</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>5/19</td><td>다움 (인욱셀)</td><td>다음 새가족 배정 시 여자 셀원 희망</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- 셀교육 출석표 -->
+    <details class="manage-fold">
+      <summary>셀교육 출석표</summary>
+      <div class="manage-fold-body">
+
+      <h4 style="font-size:0.95rem; font-weight:700; color:var(--accent); margin:0 0 8px;">다니엘 1청</h4>
+      <div class="cell-att-wrap">
+      <table class="cell-att-table">
+        <thead>
+          <tr>
+            <th style="text-align:left; min-width:160px;">셀장</th>
+            <th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th colspan="9" class="jin-header">승목진</th></tr>
+          <tr><td class="cell-name">이승민 (23기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">한권민 (23기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">황준서 (23기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">지용준 (24기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+
+          <tr><th colspan="9" class="jin-header">다움진</th></tr>
+          <tr><td class="cell-name">김나현 (23기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">오세훈 (24기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">강효정 (24기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">신수지 (25기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">황인욱 (26기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">김세현 (26기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+
+          <tr><th colspan="9" class="jin-header">지은진</th></tr>
+          <tr><td class="cell-name">황승빈 (24기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">김희진 (24기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">최승혜 (24기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">서유진 (25기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">양해창 (26기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">고요한 (24기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h4 style="font-size:0.95rem; font-weight:700; color:var(--accent); margin:24px 0 8px;">다니엘 2청</h4>
+      <div class="cell-att-wrap">
+      <table class="cell-att-table">
+        <thead>
+          <tr>
+            <th style="text-align:left; min-width:160px;">셀장</th>
+            <th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th colspan="9" class="jin-header">상우진</th></tr>
+          <tr><td class="cell-name">이은진 (23기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">진익상 (24기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">김윤환 (25기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">김상욱 (26기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+
+          <tr><th colspan="9" class="jin-header">현준진</th></tr>
+          <tr><td class="cell-name">김예은 (23기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">조효진 (24기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">이아영 (24기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">방하원 (25기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">최유정 (27기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+
+          <tr><th colspan="9" class="jin-header">재은진</th></tr>
+          <tr><td class="cell-name">한예담 (25기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">노혜주 (24기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">김경완 (23기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">최회진 (26기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">이우진 (27기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+          <tr><td class="cell-name">이강선 (26기)</td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td><td class="att-cell"></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      </div>
+    </details>
+
+  </section>
+</div><!-- /tab-manage -->
+
 <footer>
   다니엘청 간사 워크스페이스
 </footer>
@@ -848,8 +974,8 @@ function switchTab(tab) {
   document.querySelectorAll('.tab-nav button').forEach(el => el.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('active');
   const buttons = document.querySelectorAll('.tab-nav button');
-  if (tab === 'minutes') buttons[0].classList.add('active');
-  else buttons[1].classList.add('active');
+  const tabIndex = { minutes: 0, tracker: 1, manage: 2 };
+  buttons[tabIndex[tab]].classList.add('active');
   // 트래커 탭 전환 시 홈으로 리셋
   if (tab === 'tracker') showCheong('home');
 }
